@@ -31,4 +31,18 @@ public class TicketController {
     public Ticket update(@PathVariable Long id, @RequestBody Ticket ticket) {
         return service.update(id, ticket);
     }
+
+    //Tickets OPEN
+    @GetMapping("/open")
+    public List<Ticket> getOpenTickets() {
+        return service.getOpenTickets();
+    }
+
+    //Affecter ticket à agent
+    @PutMapping("/{ticketId}/assign/{agentId}")
+    public Ticket assignTicket(
+            @PathVariable Long ticketId,
+            @PathVariable Long agentId) {
+        return service.assignAgent(ticketId, agentId);
+    }
 }

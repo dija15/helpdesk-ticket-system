@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tickets")
+@Table(name = "ticket")
 public class Ticket {
 
     @Id
@@ -30,7 +30,7 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "agent_id")
-    private User agent;  // agent assigné
+    private Agent agent;  // agent assigné
 
     // ---------------- CONSTRUCTORS ----------------
 
@@ -107,11 +107,11 @@ public class Ticket {
         this.user = user;
     }
 
-    public User getAgent() {
+    public Agent getAgent() {
         return agent;
     }
 
-    public void setAgent(User agent) {
+    public void setAgent(Agent agent) {
         this.agent = agent;
     }
 }
