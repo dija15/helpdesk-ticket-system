@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/agents")
-@CrossOrigin
+
 public class AgentController {
 
     private final AgentService service;
