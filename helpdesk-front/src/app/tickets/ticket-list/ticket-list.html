@@ -1,0 +1,40 @@
+<table class="table table-bordered table-striped">
+  <thead class="table-light">
+    <tr>
+      <th>Titre</th>
+      <th>Priorité</th>
+      <th>Statut</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let t of tickets">
+      <td>{{ t.title }}</td>
+      <td>{{ t.priority }}</td>
+      <td>{{ t.status }}</td>
+      <td>
+        <button
+          class="btn btn-sm btn-warning me-2"
+          (click)="edit(t)"
+        >
+          Modifier
+        </button>
+
+        <button
+          class="btn btn-sm btn-danger"
+          (click)="closeTicket(t.id!)"
+          [disabled]="t.status === 'CLOSED'"
+        >
+          Fermer
+        </button>
+         <button
+    class="btn btn-sm btn-outline-danger"
+    (click)="deleteTicket(t.id!)"
+  >
+    Supprimer
+  </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
