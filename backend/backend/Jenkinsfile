@@ -5,31 +5,46 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo 'Clonage du repository GitHub...'
+                echo 'Récupération du code depuis GitHub'
                 checkout scm
             }
         }
 
-        stage('Preparation') {
+        stage('Backend - Tests') {
             steps {
-                echo 'Le repository est connecté avec succès.'
-                echo 'En attente du code backend (Spring Boot).'
+                echo 'Lancement des tests backend'
+                dir('backend/backend') {
+                    bat 'mvn test'
+                }
             }
         }
 
-        stage('Validation') {
+        stage('Backend - Build') {
             steps {
-                echo 'Pipeline Jenkins fonctionnel.'
+                echo 'Build du backend Spring Boot'
+                dir('backend/backend') {
+                    bat 'mvn clean package'
+                }
+            }
+        }
+
+        stage('Frontend - Build') {
+            steps {
+                echo 'Build du frontend Angular'
+                dir('helpdesk-front') {
+                    bat 'npm install'
+                    bat 'npm run build'
+                }
             }
         }
     }
 
     post {
         success {
-            echo '✅ Pipeline exécuté avec succès.'
+            echo 'CI/CD terminé avec succès'
         }
         failure {
-            echo '❌ Une erreur est survenue.'
+            echo 'Erreur dans le pipeline CI/CD'
         }
     }
 }
