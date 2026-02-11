@@ -1,8 +1,0 @@
-package com.helpdesk.backend.model;
-
-public enum Status {
-    OPEN,
-    IN_PROGRESS,
-    RESOLVED,
-    CLOSED
-}
